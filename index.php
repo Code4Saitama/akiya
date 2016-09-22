@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" lang="en"></meta>
-  <title>AED map</title>
+  <title>AKIYA Map</title>
   <script src="http://openlayers.org/api/2.11/OpenLayers.js"></script>
   <script src="http://openstreetmap.org/openlayers/OpenStreetMap.js"></script>
   <script src="http://overpass-api.de/overpass.js"></script>
@@ -41,6 +41,11 @@
 
           layerMapnik = new OpenLayers.Layer.OSM.Mapnik("Mapnik");
           map.addLayer(layerMapnik);
+        
+          var editLayer = new OpenLayers.Layer.Vector("AkiyaEdit");
+          var akiyaLayer = new OpenLayers.Layer.Vector("Akiya");
+          map.addControl(new OpenLayers.Control.EditingToolbar(editLayer));
+          map.addLayers([editLayer, akiyaLayer]);
 
           var lonLat = new OpenLayers.LonLat(lng, lat)
               .transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
